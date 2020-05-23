@@ -1,0 +1,25 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  mysql_db:
+    image: mysql:5.7.29
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: btbDatabase
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 12345
+    volumes:
+      - "./mysql_data:/var/lib/mysql"
+      - "./mysql_dump:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9999:8080
+      
