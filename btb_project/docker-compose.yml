@@ -1,7 +1,35 @@
-  
-version: '2'
+version: '3.1'
+
 services:
-  jhipsterhazelcastsampleapplication-hazelcast-management-center:
-    image: hazelcast/management-center:3.12.9
-    ports:
-      - 5701:8080
+    # rabbitmq:
+    #     image: rabbitmq:management
+    #     ports:
+    #         - 5672:5672
+    #         - 9090:15672
+    #     environment: 
+    #         RABBITMQ_DEFAULT_USER: admin
+    #         RABBITMQ_DEFAULT_PASS: admin
+    #     restart: unless-stopped
+
+    btb:
+        build: ./btb
+        ports: 
+            - 8012:8012
+        environment: 
+            - "spring.rabbitmq.host=rabbitmq"
+            - "spring.profiles.active=default"
+            - "spring.cloud.config.server.git.uri=https://github.com/Ppojin/MyFirstMSAAppConfiguration.git"
+            # RABBITMQ_HOST: rabbitmq
+            # PROFILE: default
+
+    exam:
+        build: ./exam
+        ports: 
+            - 8010:8010
+        environment: 
+            - "eureka.client.service-url.defaultZone=http://localhost:8010/eureka"
+            - "spring.cloud.config.uri=http://config-server:8012"
+            # RABBITMQ_HOST: rabbitmq
+            # PROFILE: default
+        depends_on: 
+            - config-server

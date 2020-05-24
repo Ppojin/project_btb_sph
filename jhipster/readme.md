@@ -7,9 +7,8 @@
 ## 1.1. 해결
 - jhipster 버전 6.8.0 에서 버그 있음 
 - 6.9.0 으로 업그레이드 후 실행
-
-<!-- ## 2. 문제
-`com.hazelcast.core.HazelcastInstance` Dependency 없음
-## 2.1 해결
-못함 ㅎㅎ;;
--  -->
+- 6.9.0 으로 업그레이드 후 실행
+- `com.hazelcast.core.HazelcastInstance` Dependency 없음
+- 6.7.1 로 다운그레이드
+- `com.hazelcast.core.HazelcastInstance` Dependency 없음
+- 6.6.0 로 다운그레이드
