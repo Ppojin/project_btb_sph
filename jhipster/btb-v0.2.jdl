@@ -11,7 +11,7 @@ application {
         serviceDiscoveryType no,
         authenticationType jwt,
         prodDatabaseType mysql,
-        cacheProvider hazelcast,
+        cacheProvider redis,
         buildTool maven,
         clientFramework react,
         useSass true,
@@ -30,7 +30,7 @@ application {
         serviceDiscoveryType eureka,
         authenticationType jwt,
         prodDatabaseType mysql,
-        cacheProvider hazelcast,
+        cacheProvider redis,
         buildTool maven,
         serverPort 10000,
         skipUserManagement true
@@ -47,7 +47,7 @@ application {
         serviceDiscoveryType eureka,
         authenticationType jwt,
         prodDatabaseType mysql,
-        cacheProvider hazelcast,
+        cacheProvider redis,
         buildTool maven,
         serverPort 20000,
         skipUserManagement true
@@ -64,7 +64,7 @@ application {
         serviceDiscoveryType eureka,
         authenticationType jwt,
         // prodDatabaseType no,
-        cacheProvider hazelcast,
+        cacheProvider redis,
         buildTool maven,
         serverPort 30000,
         skipUserManagement true
