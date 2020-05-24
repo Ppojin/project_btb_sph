@@ -1,3 +1,7 @@
+// mvn clean
+// mvn compile
+// mvn install
+
 // 1. ui + Customer + gateway
 application {
     config{
@@ -89,11 +93,15 @@ enum Role {
     STUDENT, TEACHER
 }
 
+relationship OneToOne {
+    Customer{user(login) required} to User
+}
+
 service Customer with serviceClass
 paginate Customer with pagination
 microservice Customer with btb
 
-// 2 문제관리
+// 2 문제은행
 entity QABank {
     idQABank UUID required
     title String required
@@ -112,9 +120,10 @@ service QABank with serviceClass
 paginate QABank with pagination
 microservice QABank with qa
 
-// 3 시험관리
+// 3 시험
 entity Exam {
     idExam UUID required
+    title String required
     level Level required
     startDate Instant required
     endDate Instant required

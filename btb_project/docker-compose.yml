@@ -1,0 +1,7 @@
+  
+version: '2'
+services:
+  jhipsterhazelcastsampleapplication-hazelcast-management-center:
+    image: hazelcast/management-center:3.12.9
+    ports:
+      - 5701:8080
