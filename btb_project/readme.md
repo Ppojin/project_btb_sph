@@ -1,7 +1,10 @@
 # 실행방법
+## 방법1
 - `docker-compose -f exam/src/main/docker/jhipster-registry.yml up`
 - `docker-compose -f exam/src/main/docker/redis.yml up`
 - intellij 이용 microservice, btb(ui) 실행
+## 방법2
+- `docker-compose up` in `/btb_project/result`
 
 # jhipster 관련
 - [jhipster.tech](https://www.jhipster.tech/)
