@@ -1,0 +1,31 @@
+{
+  "name": "ExamQABank",
+  "fields": [
+    {
+      "fieldName": "idQABank",
+      "fieldType": "UUID"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "exam",
+      "otherEntityRelationshipName": "examQABank",
+      "relationshipName": "exam",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20200524162857",
+  "entityTableName": "exam_qa_bank",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["btb", "exam"],
+  "microserviceName": "exam"
+}

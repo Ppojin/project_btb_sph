@@ -1,0 +1,174 @@
+// jhipster version = 6.6
+
+// mvn clean
+// mvn compile
+// mvn install
+
+// 1. ui + Customer + gateway
+application {
+    config{
+        baseName btb,
+        applicationType gateway,
+        packageName com.sph.btb,
+        serviceDiscoveryType no,
+        authenticationType jwt,
+        prodDatabaseType mysql,
+        cacheProvider redis,
+        // cacheProvider hazelcast,
+        buildTool maven,
+        clientFramework react,
+        useSass true,
+        testFrameworks [protractor]
+    }
+    // entities Customer
+    entities *
+}
+
+// 2. 문제관리
+application {
+    config{
+        baseName qa,
+        applicationType microservice,
+        packageName com.sph.qa,
+        serviceDiscoveryType eureka,
+        // authenticationType jwt,
+        prodDatabaseType mysql,
+        cacheProvider redis,
+        // cacheProvider hazelcast,
+        buildTool maven,
+        serverPort 10000,
+        skipUserManagement true
+    }
+    entities QABank
+}
+
+// 3. 시험관리
+application {
+    config{
+        baseName exam,
+        applicationType microservice,
+        packageName com.sph.exam,
+        serviceDiscoveryType eureka,
+        // authenticationType jwt,
+        prodDatabaseType mysql,
+        cacheProvider redis,
+        // cacheProvider hazelcast,
+        buildTool maven,
+        serverPort 20000,
+        skipUserManagement true
+    }
+    entities Exam, ExamQABank, ExamStudent
+}
+
+// 4. 결과관리
+application {
+    config{
+        baseName result,
+        applicationType microservice,
+        packageName com.sph.result,
+        serviceDiscoveryType eureka,
+        // authenticationType jwt,
+        // prodDatabaseType no,
+        cacheProvider redis,
+        // cacheProvider hazelcast,
+        buildTool maven,
+        serverPort 30000,
+        skipUserManagement true
+    }
+    entities ExamResult
+}
+
+// 1 btb(ui)
+entity Customer {
+    idCustomer UUID required
+    firstName String required
+    lastName String required
+    gender Gender required
+    email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+    phone String required
+    city String required
+    signinDate Instant required
+    role Role required
+}
+
+enum Gender {
+    MALE, FEMALE, TRANCE
+}
+
+enum Role {
+    STUDENT, TEACHER
+}
+
+relationship OneToOne {
+    Customer{user(login) required} to User
+}
+
+service Customer with serviceClass
+paginate Customer with pagination
+microservice Customer with btb
+
+// 2 문제은행
+entity QABank {
+    idQABank UUID required
+    title String required
+    contents String required
+    // environment String required
+    gitUrl String required
+    // property String required
+    category Category required
+}
+
+enum Category {
+    SERVICE, CONTROLLER, SECURITY
+}
+
+service QABank with serviceClass
+paginate QABank with pagination
+microservice QABank with qa
+
+// 3 시험
+entity Exam {
+    idExam UUID required
+    title String required
+    level Level required
+    startDate Instant required
+    endDate Instant required
+}
+
+enum Level {
+    ONE, TWO, THREE, FOUR, FIVE
+}
+
+entity ExamQABank {
+    idQABank UUID
+}
+
+entity ExamStudent {
+    idCustomer UUID
+}
+
+relationship ManyToMany {
+    Exam to ExamQABank
+}
+
+relationship OneToMany {
+    Exam to ExamStudent
+}
+
+service Exam, ExamQABank, ExamStudent with serviceClass
+paginate Exam, ExamQABank with pagination
+microservice Exam, ExamQABank, ExamStudent with exam
+
+// 4 결과관리
+entity ExamResult{
+    idExcerciseResult UUID required
+    score Integer
+    gitUrl String
+    startDate Instant
+    endDate Instant
+    result Blob
+}
+
+service ExamResult with serviceClass
+paginate ExamResult with pagination
+microservice ExamResult with exam

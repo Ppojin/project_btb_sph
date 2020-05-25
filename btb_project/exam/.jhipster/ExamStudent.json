@@ -1,0 +1,30 @@
+{
+  "name": "ExamStudent",
+  "fields": [
+    {
+      "fieldName": "idCustomer",
+      "fieldType": "UUID"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "exam",
+      "otherEntityRelationshipName": "examStudent",
+      "relationshipName": "exam",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200524162957",
+  "entityTableName": "exam_student",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["btb", "exam"],
+  "microserviceName": "exam"
+}
