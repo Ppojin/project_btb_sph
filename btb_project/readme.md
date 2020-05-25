@@ -30,7 +30,7 @@
 ### 2.1 해결
 - `docker-compose -f src/main/docker/jhipster-registry.yml up`
 - [관련 블로그](https://kji6252.github.io/2018/08/11/JHipster-MSA-%EA%B5%AC%EC%B6%95/) 참고
-- ![swagger](./_img/swagger401.png)
+- ![registry](./_img/registry(discovery).png)
 
 ## 3 hazlecase 불안정
 ### 3.1 해결
@@ -41,5 +41,5 @@ jhipster-registry(discovery) 에서 microservice 에 접속하면 401 에러로 
 ### 4.1 해결중
 - microservice 에서 직접 `http://~/v2/api-docs` 로 접속하면 document 보임
 - jhipster-registry 에서 document 확인 가능하도록 문제 해결중
-- ![registry](./_img/registry(discovery).png)
+- ![swagger](./_img/swagger401.png)
 - ![document](./_img/document.png)
