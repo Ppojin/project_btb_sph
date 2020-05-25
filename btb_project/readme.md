@@ -35,10 +35,11 @@
 ## 2.4 swagger document
 jhipster-registry(discovery) 에서 microservice 에 접속하면 401 에러로 document 보이지 않는 문제 발생
 ### 2.4.1 해결중
+- registry swagger ui 에서는 microcservice document 가 안보임
+    - ![swagger](./_img/swagger401.png)
 - microservice 에서 직접 `http://~/v2/api-docs` 로 접속하면 document 보임
+    - ![document](./_img/document.png)
 - jhipster-registry 에서 document 확인 가능하도록 문제 해결중
-- ![swagger](./_img/swagger401.png)
-- ![document](./_img/document.png)
 
 # 3. 참고문헌
 - [jhipster.tech](https://www.jhipster.tech/)
